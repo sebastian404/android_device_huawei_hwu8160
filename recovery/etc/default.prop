@@ -1,0 +1,14 @@
+#
+# ADDITIONAL_DEFAULT_PROPERTIES
+#
+ro.secure=0
+ro.allow.mock.location=0
+ro.debuggable=1
+persist.service.adb.enable=1
+ro.modversion=clockwork-3.2.0.0-hwu8160
+ro.product.device=hwu8160
+ro.product.name=U8160
+ro.build.date=<DATE>
+ro.build.date.utc=<DATEUTC>
+ro.build.owner=sebastian404
+ro.build.url=http://android.podtwo.com/
