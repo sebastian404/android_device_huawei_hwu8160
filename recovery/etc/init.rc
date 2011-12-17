@@ -4,17 +4,18 @@
 #--------   ----            ---------------------------------------------------
 #2010-12-08 sebastian404    inital build
 #2011-03-31 sebastian404    fix usbconfig for 2.6.32 kernel
+#2011-05-28 sebastian404    increated ramdisk for kernel replacment stuffs
+#2011-06-02 sebastian404    initial build for Vodafone Smart/Huawei 8160
+#2011-12-16 sebastian404    custom kernel
 ##########################################
 
-on early-init
-    exec /sbin/usbconfig
-
 on init
-
     # setup enviroment
     export PATH /sbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
+    export ANDROID_DATADTA /datadata
+    export ANDROID_CUST /cust
     export EXTERNAL_STORAGE /sdcard
 
     # setup recovery filesystems
@@ -22,15 +23,11 @@ on init
     mkdir /sd-ext 0771 system system
     mkdir /system 0771 system system
     mkdir /data 0771 system system
+    mkdir /datadata 0771 system system
+    mkdir /cust 0771 system system
     mkdir /cache 0770 system cache
     mkdir /etc 0770 root root
     mkdir /tmp 01777 root root
-
-    # mount inital filesystems
-    mount tmpfs tmpfs /tmp size=8m
-    devwait /dev/block/mmcblk0p1
-    mount vfat /dev/block/mmcblk0p1 /sdcard rw
-
 
 on boot
     ifup lo
@@ -38,12 +35,20 @@ on boot
     domainname localdomain
     class_start default
 
-service usbconfig /sbin/usbconfig
-    oneshot
+    # mount inital filesystems
+    mount tmpfs tmpfs /tmp size=64m
+    wait /dev/block/mmcblk0p1
+    mount vfat /dev/block/mmcblk0p1 /sdcard rw
+
+    # turn up backlight & keypad
+    write /sys/class/leds/lcd-backlight/brightness 255
+    write /sys/class/leds/button-backlight/brightness 255
 
 service recovery /sbin/recovery
+    oneshot
 
 service adbd /sbin/adbd recovery
+    disabled
 
 on property:persist.service.adb.enable=1
     start adbd

@@ -1,14 +1,13 @@
 # mount point	fstype		device			[device2]
+/boot       mtd       boot                  (null)
+/recovery   mtd       recovery              (null)
+/misc       mtd       misc                  (null)
+/cache      yaffs2    cache                 (null)
+/system     yaffs2    system                (null)
+/data       yaffs2    userdata              (null)
+/data2      yaffs2    userdata2             (null)
+/cust       yaffs2    cust                  (null)
 
-/boot		mtd		boot
-/recovery       mtd             recovery
-/misc           mtd             misc
-/splash		mtd		spash
-/system		yaffs2		system
-/cache          yaffs2          cache
-/data		yaffs2		userdata
-/datadata       yaffs2          userdata2
-/cust		yaffs2		cust
+/sdcard     vfat      /dev/block/mmcblk0p1  (null)
+/sd-ext     auto      /dev/block/mmcblk0p2  (null)
 
-/sdcard		vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0
-/sd-ext		auto		/dev/block/mmcblk0p2
