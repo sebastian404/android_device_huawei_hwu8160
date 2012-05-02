@@ -5,7 +5,7 @@
 /cache      yaffs2    cache                 (null)
 /system     yaffs2    system                (null)
 /data       yaffs2    userdata              (null)
-/data2      yaffs2    userdata2             (null)
+/datadata   yaffs2    userdata2             (null)
 /cust       yaffs2    cust                  (null)
 
 /sdcard     vfat      /dev/block/mmcblk0p1  (null)
