@@ -1,11 +1,18 @@
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
 
 # inherit from the proprietary version
 -include vendor/huawei/hwu8160/BoardConfigVendor.mk
 
 TARGET_NO_BOOTLOADER := true
-TARGET_BOARD_PLATFORM := unknown
+
+TARGET_BOARD_PLATFORM := msm7k
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
 TARGET_CPU_ABI := armeabi
+TARGET_CPU_ABI := armeabi-v6l
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv6-vfp
+
 TARGET_BOOTLOADER_BOARD_NAME := hwu8160
 
 BOARD_KERNEL_CMDLINE := mem=211M console=ttyMSM2,115200n8 androidboot.hardware=huawei console=ttyUSBCONSOLE0 androidboot.console=ttyUSBCONSOLE0 
@@ -20,7 +27,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x0A6A0000
 BOARD_FLASH_BLOCK_SIZE := 0x00020000
 
 TARGET_PREBUILT_KERNEL := device/huawei/hwu8160/recovery_kernel
-TARGET_RECOVERY_INITRC := device/huawei/hwu8160/recovery/etc/init.rc
+TARGET_RECOVERY_INITRC := device/huawei/hwu8160/recovery/init.rc
 
 BOARD_SYSTEM_DEVICE := /dev/block/mtdblock4
 BOARD_SYSTEM_FILESYSTEM := auto

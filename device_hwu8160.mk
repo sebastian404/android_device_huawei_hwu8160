@@ -7,7 +7,6 @@ $(call inherit-product-if-exists, vendor/huawei/hwu8160/hwu8160-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/huawei/hwu8160/overlay
 
-
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := device/huawei/hwu8160/recovery_kernel
 else
@@ -15,13 +14,15 @@ else
 endif
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+    $(LOCAL_KERNEL):kernel\
+    device/huawei/hwu8160/recovery/fstab:/root/etc/fstab
 
 $(call inherit-product, build/target/product/full.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := generic_hwu8160
 PRODUCT_DEVICE := hwu8160
+PRODUCT_BRAND := huawei
 
 pathmap_INCL := recovery:device/huawei/hwu8160/recovery
 

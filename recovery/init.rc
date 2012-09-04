@@ -6,8 +6,11 @@
 #2011-03-31 sebastian404    fix usbconfig for 2.6.32 kernel
 #2011-05-28 sebastian404    increated ramdisk for kernel replacment stuffs
 #2011-06-02 sebastian404    initial build for Vodafone Smart/Huawei 8160
-#2011-12-16 sebastian404    custom kernel
+#2012-05-07 sebastian404    cleanup of recovery images
 ##########################################
+
+on early-init
+    start ueventd
 
 on init
     # setup enviroment
@@ -37,13 +40,16 @@ on boot
     class_start default
 
     # mount inital filesystems
-    mount tmpfs tmpfs /tmp size=64m
+    mount tmpfs tmpfs /tmp size=256m
     wait /dev/block/mmcblk0p1
     mount vfat /dev/block/mmcblk0p1 /sdcard rw
 
     # turn up backlight & keypad
     write /sys/class/leds/lcd-backlight/brightness 255
     write /sys/class/leds/button-backlight/brightness 255
+
+service ueventd /sbin/ueventd
+    critical
 
 service recovery /sbin/recovery
     oneshot
